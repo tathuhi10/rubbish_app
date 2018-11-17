@@ -1,0 +1,5 @@
+<%= form_for( :conditions , url: search_path) do |f| %>
+<%= select_tag :region, options_from_collection_for_select(@region, :id, :name) %>
+<input type="text" id="test" />
+<input type="submit" value="検索">
+<% end %>

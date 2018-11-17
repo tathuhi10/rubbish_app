@@ -1,0 +1,2 @@
+module RubbishHelper
+end
