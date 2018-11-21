@@ -1,14 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
-  name: 大田区
+  region_id: 1
+  name: "test"
+  name_kana: "test"
 
 two:
-  id: 2
-  name: 江東区
-
-three:
-  id: 3
-  name: 練馬区
-
+  region_id: 1
+  name: "靴"
+  name_kana: MyString

@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_17_073846) do
+ActiveRecord::Schema.define(version: 2018_11_20_115205) do
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rubbishes", force: :cascade do |t|
+    t.integer "region_id"
+    t.string "name"
+    t.string "name_kana"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "kind"
+    t.string "remarks"
   end
 
 end

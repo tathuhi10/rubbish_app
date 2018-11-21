@@ -1,5 +1,22 @@
-<%= form_for( :conditions , url: search_path) do |f| %>
+<%= form_tag("/search", method: "post" ) do %>
 <%= select_tag :region, options_from_collection_for_select(@region, :id, :name) %>
-<input type="text" id="test" />
-<input type="submit" value="検索">
+<%= text_field_tag(:word) %>
+<%= submit_tag("検索") %>
 <% end %>
+
+<% if !@rubbish_region.blank? %>
+    <table>
+    <tr>
+        <td>地域</td><td>名前</td><td>分類</td><td>備考</td>
+    </tr>
+    <% @rubbish_region.each do | r | %>
+        <tr>
+            <td id="region"><%= r.region_name %></td>
+            <td id="rubbish_name"><%= r.name %></td>
+            <td><%= r.kind %></td>
+            <td><%= r.remarks %></td>
+        </tr>
+    <% end %>
+    </table>
+<% end %>
+<%= debug(params) if Rails.env.development? %>
