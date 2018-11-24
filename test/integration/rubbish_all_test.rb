@@ -24,7 +24,23 @@ class RubbishAllTest < ActionDispatch::IntegrationTest
     
   end
 
-  # 検索ボタンを押したときのテスト(結果あり)
+
+  # 検索ボタンを押したときのテスト(結果なし)
+  test "search error" do
+
+    # 初期画面表示
+    get root_path
+
+    # 検索ボタン
+    post search_path, params: {region: 1, word: 'ありえない単語'}
+    assert_response :success
+
+    # 結果
+    assert_select "table", 0
+
+  end
+
+  # 検索ボタンを押したときのテスト(名前でヒット＋違う区はでない)
   test "search success" do
 
     # 初期画面表示
@@ -39,7 +55,27 @@ class RubbishAllTest < ActionDispatch::IntegrationTest
 
     # 結合結果テスト用
     assert_select "td[id='region']", "大田区"
-    assert_select "td[id='rubbish_name']", "靴"
+    assert_select "td[id='rubbish_name']", "安全靴"
+
+  end
+
+  # 検索ボタンを押したときのテスト(かなでヒット＋違う区はでない)
+  test "search success kana" do
+
+    # 初期画面表示
+    get root_path
+
+    # 検索ボタン
+    post search_path, params: {region: 1, word: "ぜん"}
+    assert_response :success
+
+    # 結果
+    assert_select "table", 1
+
+    # 結合結果テスト用
+    assert_select "td[id='region']", "大田区"
+    assert_select "td[id='rubbish_name']", "配膳台"
+    assert_select "td[id='rubbish_name']", "安全靴"
 
   end
 
@@ -56,21 +92,12 @@ class RubbishAllTest < ActionDispatch::IntegrationTest
     # 結果
     assert_select "table", 1
 
-  end
-
-  # 検索ボタンを押したときのテスト(結果なし)
-  test "search error" do
-
-    # 初期画面表示
-    get root_path
-
-    # 検索ボタン
-    post search_path, params: {region: 1, word: 'ありえない単語'}
-    assert_response :success
-
-    # 結果
-    assert_select "table", 0
+    # 結合結果テスト用
+    assert_select "td[id='region']", "大田区"
+    assert_select "td[id='rubbish_name']", "配膳台"
+    assert_select "td[id='rubbish_name']", "安全靴"
 
   end
+
 
 end

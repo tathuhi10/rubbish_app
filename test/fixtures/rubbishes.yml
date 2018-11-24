@@ -2,10 +2,15 @@
 
 one:
   region_id: 1
-  name: "test"
-  name_kana: "test"
+  name: "安全靴"
+  name_kana: "あんぜんぐつ"
 
 two:
   region_id: 1
-  name: "靴"
-  name_kana: MyString
+  name: "配膳台"
+  name_kana: "はいぜんだい"
+
+three:
+  region_id: 2
+  name: "安全靴"
+  name_kana: "あんぜんぐつ"
